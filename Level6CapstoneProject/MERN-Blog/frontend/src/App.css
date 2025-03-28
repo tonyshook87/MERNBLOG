@@ -1,0 +1,593 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%; /* Allow flexbox calculations for the full viewport */
+  margin: 0; /* Remove default margin */
+}
+
+#root {
+  display: flex; /* Enable flexbox on the root div (React's mount point) */
+  flex-direction: column; /* Stack elements vertically */
+  min-height: 100vh; /* Ensure the app fills the full viewport height */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6; /* Improve readability */
+  background-color: #f4f4f4; /* Soft background color */
+  margin: 0;
+  color: #333; /* Default text color */
+}
+
+ul {
+  list-style: none; /* Remove default list styling */
+  padding: 0;
+  margin: 0;
+}
+
+h1,
+h2 {
+  font-weight: bold;
+  color: #333;
+}
+
+a {
+  color: #4caf50; /* Green links */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between; /* Push title left, links right */
+  align-items: center; /* Align items vertically */
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+}
+
+.nav-title h1 {
+  font-size: 28px;
+  color: lightgreen; /* Optional: Add a green accent */
+  font-weight: bold;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 18px;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+.nav button {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.nav button:hover {
+  background: white;
+  color: #333;
+  transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    align-items: flex-start; /* Align links to the left */
+    padding: 10px;
+  }
+
+  .nav a {
+    margin: 5px 0; /* Reduce spacing between links */
+  }
+}
+
+/* General Form Styling */
+form {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f0f0f0; /* Light gray background */
+  border: 1px solid #ccc; /* Subtle gray border */
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Space between inputs */
+}
+
+/* Input Fields */
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #e9e9e9; /* Slight gray background for input fields */
+  box-sizing: border-box;
+}
+
+/* Input Hover and Focus Effects */
+input:focus,
+textarea:focus {
+  border-color: #4caf50; /* Green focus border */
+  outline: none;
+  box-shadow: 0 0 4px rgba(76, 175, 80, 0.5); /* Green glow effect */
+}
+
+/* Textarea Specific Styling */
+textarea {
+  resize: vertical;
+  height: 100px;
+  font-family: inherit; /* Matches font with the rest of the form */
+}
+
+/* Submit Button */
+button:not(.favorite-button) {
+  padding: 10px 15px;
+  margin-right: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:not(.favorite-button):hover {
+  background-color: #388e3c;
+}
+
+form button:hover:not(.favorite-button) {
+  background: #4caf50; /* Green hover effect */
+  color: white; /* Maintain white text */
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:focus:not(.favorite-button) {
+  outline: none;
+  box-shadow: 0 0 6px rgba(76, 175, 80, 0.7); /* Intense glow on focus */
+}
+
+/* Form Heading */
+h2 {
+  text-align: center;
+  color: #333; /* Dark gray for text */
+  margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Optional Error Message Styling */
+.error {
+  color: #d32f2f; /* Red error text */
+  font-size: 14px;
+  margin-top: -8px;
+  margin-bottom: 10px;
+}
+/* Container for the buttons */
+.button-container {
+  display: flex;
+  justify-content: center; /* Center buttons horizontally */
+  gap: 10px; /* Space between the buttons */
+  margin: 20px 0; /* Add some margin around the container */
+}
+
+/* Individual Buttons */
+.button-container button:not(.favorite-button) {
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #4caf50; /* Green for consistency */
+  border: 1px solid #4caf50;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.button-container button:hover:not(.favorite-button) {
+  background-color: white; /* Invert colors on hover */
+  color: #4caf50;
+}
+
+.login-span {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  color: #333;
+  font-size: large;
+}
+
+.blog-list {
+  display: grid;
+  gap: 10px;
+  padding: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.blog-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: #fff;
+}
+
+.blog-image {
+  width: 50%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.blog-content {
+  padding: 15px;
+}
+
+.blog-content h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #333;
+}
+
+.blog-content p {
+  margin: 10px 0;
+  color: #666;
+}
+
+.blog-author {
+  font-size: 14px;
+  color: #999;
+}
+
+.read-more {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #4caf50;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.read-more:hover {
+  background-color: #388e3c;
+}
+
+.blog-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.blog-page h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.blog-page .blog-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.blog-actions {
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 15px;
+  margin-right: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover:not(.favorite-button) {
+  background-color: #388e3c;
+}
+
+button.delete {
+  background-color: #f44336;
+}
+
+button.delete:hover {
+  background-color: #d32f2f;
+}
+
+.comments-section {
+  margin-top: 40px;
+}
+
+.comments-list {
+  list-style: none;
+  padding: 0;
+}
+
+.comment-item {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.add-comment-form input {
+  width: calc(100% - 20px);
+  margin-right: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.add-comment-form button {
+  padding: 10px;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  border-radius: 4px;
+}
+.profile-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-page h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.profile-page h2 {
+  margin-top: 40px;
+  font-size: 22px;
+  color: #333;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  background: #f9f9f9;
+}
+
+li h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+li p {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* .profile-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-page h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.create-blog {
+  margin-bottom: 40px;
+}
+
+.create-blog button {
+  padding: 10px 15px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.create-blog button:hover {
+  background-color: #388e3c;
+}
+
+.my-posts-list {
+  list-style: none;
+  padding: 0;
+}
+
+.post-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  background-color: #f9f9f9;
+}
+
+.post-item h3 {
+  margin: 0;
+}
+
+.post-item button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.post-item button:hover {
+  background-color: #d32f2f;
+}
+
+.post-item a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: #4caf50;
+}
+
+.post-item a:hover {
+  text-decoration: underline;
+}
+  
+*/
+
+.favorites-page {
+  max-width: 900px;
+  margin: 0 auto; /* Center the page */
+  padding: 20px;
+}
+
+.favorites-page h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333; /* Dark text color for contrast */
+}
+
+.favorite-item {
+  display: flex; /* Flexbox for better layout */
+  align-items: flex-start; /* Align items to the top */
+  gap: 20px; /* Space between image and text */
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd; /* Light border for separation */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  background: #f9f9f9; /* Light background */
+}
+
+.favorite-item img {
+  flex-shrink: 0; /* Prevent image from shrinking */
+  width: 150px; /* Fixed width for consistent layout */
+  height: 100px; /* Fixed height to maintain uniformity */
+  object-fit: cover; /* Ensure the image fits well */
+  border-radius: 8px; /* Rounded corners for the image */
+}
+
+.favorite-item h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #4caf50; /* Green for headlines */
+}
+
+.favorite-item p {
+  margin: 8px 0;
+  color: #666; /* Subtle text color */
+}
+
+.favorite-item a {
+  text-decoration: none;
+  color: #333; /* Default text color */
+  transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+.favorite-item a:hover {
+  color: #4caf50; /* Green on hover */
+}
+
+.favorite-item-content {
+  display: flex;
+  flex-direction: column; /* Stack text content vertically */
+  flex: 1; /* Take up available space */
+}
+
+.favorite-button {
+  background: none; /* No background */
+  border: none; /* Remove border */
+  cursor: pointer;
+  font-size: 24px; /* Make it appropriately sized for a heart icon */
+  color: gray; /* Default color */
+  transition: transform 0.2s ease, color 0.2s ease; /* Smooth transition for hover and click */
+}
+
+.favorite-button:hover {
+  transform: scale(1.2); /* Slight zoom effect on hover */
+}
+
+.favorite-button.favorited {
+  color: red; /* Highlight when favorited */
+}
+
+.favorite-button:focus {
+  outline: none; /* Remove focus outline */
+}
+/* Footer Styles */
+
+footer.footer {
+  background-color: #333; /* Dark footer background */
+  color: white; /* Light text for contrast */
+  text-align: center; /* Center align the footer text */
+  padding: 20px 10px; /* Space around the footer content */
+  font-size: 14px; /* Adjust the footer text size */
+  border-top: 1px solid #444; /* Optional border for separation */
+  margin-top: auto; /* Push the footer to the bottom if there's little content */
+}
+
+.footer {
+  background-color: #333; /* Dark background color */
+  color: white; /* White text for contrast */
+  text-align: center; /* Center align text and links */
+  padding: 20px 10px; /* Add some space around the footer */
+}
+
+.footer-text {
+  margin: 0 0 10px; /* Space below the text */
+  font-size: 16px; /* Font size for copyright text */
+  color: #ccc; /* Subtle text color */
+}
+
+.footer-nav {
+  display: flex; /* Use flexbox for navigation links */
+  justify-content: center; /* Center the links */
+  gap: 15px; /* Space between each link */
+}
+
+.footer-link {
+  color: white; /* White text color */
+  text-decoration: none; /* Remove underline */
+  font-size: 16px; /* Font size for links */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.footer-link:hover {
+  color: #4caf50; /* Green color on hover */
+}
