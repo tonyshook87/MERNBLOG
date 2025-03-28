@@ -1,8 +1,8 @@
 const express = require("express");
 const blogRouter = express.Router();
-const Blog = require("../backend/models/blogModel");
-const User = require("../backend/models/userModel");
-const Comment = require("../backend/models/commentModel");
+const Blog = require("../models/blogModel");
+const User = require("../models/userModel");
+const Comment = require("../models/commentModel");
 
 // Get all blog posts
 blogRouter.get("/", async (req, res, next) => {

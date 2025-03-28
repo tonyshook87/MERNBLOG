@@ -1,6 +1,6 @@
 const express = require("express");
 const authRouter = express.Router();
-const User = require("../backend/models/userModel");
+const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 
 // The pre("save") middleware hashes the user's password before saving it in the database. T
