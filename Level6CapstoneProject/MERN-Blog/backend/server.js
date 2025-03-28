@@ -4,6 +4,7 @@ require("dotenv").config();
 const { expressjwt } = require("express-jwt");
 const morgan = require("morgan");
 const app = express();
+const path = require("path");
 
 app.use(express.json());
 app.use(morgan("dev"));
