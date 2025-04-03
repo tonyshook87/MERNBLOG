@@ -53,6 +53,16 @@ app.use((err, req, res, next) => {
 });
 
 // Listen
-app.listen(process.env.PORT, () =>
-  console.log(`Server running on ${process.env.PORT}`)
-);
+const startServer = async () => {
+  try {
+  await connectDB(); // Ensure DB is connected first
+ 
+  app.listen(process.env.PORT || 5000, () => {
+  console.log(`🚀 Server running on port ${process.env.PORT || 5000}`);
+  });
+  } catch (error) {
+  console.error("❌ Server failed to start due to DB error:", error);
+  }
+ };
+ 
+ startServer();
