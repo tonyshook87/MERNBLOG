@@ -12,7 +12,12 @@ app.use(morgan("dev"));
 // Connect to DB
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.DB_URI);
+    await mongoose.connect(process.env.DB_URI, {
+      useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 30000
+    });
+
     console.log("database connected successfully");
   } catch (error) {
     console.error(error);
